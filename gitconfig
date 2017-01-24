@@ -1,0 +1,5 @@
+[user]
+	email = ashtonsb@umich.edu
+	name = Ashton Baker
+[core]
+	editor = emacsclient -t
