@@ -4,3 +4,5 @@
 	signingkey = 6B123ABFE2A2B956
 [core]
 	editor = emacsclient -t
+[commit]
+	gpgsign = true
