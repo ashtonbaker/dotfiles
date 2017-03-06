@@ -10,5 +10,7 @@ fi
 
 # User specific aliases and functions
 alias h="history"
-alias emax="emacsclient -t"
-
+alias emax="emacsclient -c"
+alias emin="emacsclient -t"
+alias la="ls -a"
+alias ll="ls -l"
