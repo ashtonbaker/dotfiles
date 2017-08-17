@@ -22,4 +22,6 @@ alias ll="ls -l"
 
 # added by Miniconda3 4.3.11 installer
 export PATH="/home/ashton/miniconda3/bin:$PATH"
+
+# Set GOPATH
 export GOPATH=$HOME/go
