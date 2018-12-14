@@ -2,5 +2,9 @@
 	signingkey = A2EBDFDE18AFD1B597B9444149ACBDA2B26ACE70
 	name = Ashton Baker
 	email = abaker@networksgroup.com
+[color]
+    ui = auto
 [core]
-	excludesfile = ~/.gitignore_global
+    excludesfile = ~/.gitignore_global
+[alias]
+    adog = log --all --decorate --oneline --graph 
