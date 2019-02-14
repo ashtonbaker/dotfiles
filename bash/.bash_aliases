@@ -12,6 +12,10 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# cd aliases
+alias blu="cd ~/blumira"
+alias nwg="cd ~/nwg"
+
 # enable color support of grep
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
