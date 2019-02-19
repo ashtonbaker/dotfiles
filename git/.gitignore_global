@@ -39,3 +39,7 @@ Thumbs.db
 # IDE Config files #
 ####################
 .idea/
+
+# Per-Directory Environment Variables #
+#######################################
+.envrc
