@@ -63,7 +63,10 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages
+   '(
+     org-gcal
+     )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -119,7 +122,7 @@ values."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner 'random
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
    ;; Possible values for list-type are:
@@ -319,15 +322,15 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (ido-mode -1)
+  (require 'org-gcal)
   (setq vc-follow-symlinks t)
   (setq spacemacs-default-jump-handlers
         (remove 'evil-goto-definition spacemacs-default-jump-handlers))
   (setq-default js2-basic-offset 2)
   (setq treemacs-no-png-images t)
-  (setq org-directory "~/Dropbox/org")
+  (setq org-directory "~/org")
   (setq org-default-notes-file (concat org-directory "/inbox.org"))
   (setq org-agenda-files (list org-directory))
-  (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
   (setq org-refile-use-outline-path 'file)
   (setq org-outline-path-complete-in-steps nil)
   (setq org-refile-allow-creating-parent-nodes 'confirm)
@@ -340,8 +343,32 @@ you should place your code here."
          (file "~/org/templates/newgoaltemplate.org"))
         ("s" "Someday" entry (file+headline "~/org/somedaymaybe.org" "Someday / Maybe")
          "* SOMEDAY %?\n")
-        ("m" "Maybe" entry (file+headline "~/org/somedaymaybe.org" "Someday / Maybe")
-         "* MAYBE %?\n")))
+        ("y" "Maybe" entry (file+headline "~/org/somedaymaybe.org" "Someday / Maybe")
+         "* MAYBE %?\n")
+        ("r" "Recipe" entry (file+headline "~/org/reference/food/recipes.org" "Recipes")
+         (file "~/org/templates/recipetemplate.org"))
+        ("d" "Review - Daily" entry (file+datetree "~/org/reviews.org")
+         (file "~/org/templates/dailyreviewtemplate.org"))
+        ("w" "Review - Weekly" entry (file+datetree "~/org/reviews.org")
+         (file "~/org/templates/weeklyreviewtemplate.org"))
+        ("m" "Review - Monthly" entry (file+datetree "~/org/reviews.org")
+         (file "~/org/templates/monthlyreviewtemplate.org"))
+        ("y" "Review - Yearly" entry (file+datetree "/org/reviews.org")
+         (file "~/org/templates/annualreviewtemplate.org"))
+        ))
+  (load-file (concat org-directory "/config/secrets.el"))
+  (use-package org-gcal
+    :init
+    (add-hook 'emacs-startup-hook #'org-gcal-fetch))
+  (setq org-agenda-files (quote ("~/org/todo.org"
+                                 "~/org/agendas.org"
+                                 "~/org/inbox.org"
+                                 "~/org/calendar/calendar.org"
+                                 "~/org/calendar/blumira-calendar.org"
+                                 "~/org/somedaymaybe.org"
+                                 "~/org/goals.org"
+                                 "~/org/reviews.org")))
+  (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -385,9 +412,9 @@ This function is called at the very end of Spacemacs initialization."
  '(org-startup-with-inline-images t)
  '(package-selected-packages
    (quote
-    (pipenv doom-modeline flycheck-pos-tip pos-tip flycheck web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern tern coffee-mode mmm-mode markdown-toc markdown-mode gh-md rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fuzzy evil-magit magit magit-popup git-commit ghub treepy let-alist graphql with-editor diff-hl company-statistics company-anaconda company auto-yasnippet yasnippet ac-ispell auto-complete vimrc-mode dactyl-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+    (org-gcal flycheck-pos-tip pos-tip flycheck web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern tern coffee-mode mmm-mode markdown-toc markdown-mode gh-md rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fuzzy evil-magit magit magit-popup git-commit ghub treepy let-alist graphql with-editor diff-hl company-statistics company-anaconda company auto-yasnippet yasnippet ac-ispell auto-complete vimrc-mode dactyl-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
  '(spacemacs-theme-org-height nil)
- '(toc-org-max-depth 10 t))
+ '(toc-org-max-depth 10))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
