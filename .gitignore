@@ -1,2 +1,4 @@
 secrets.el
 secrets.org
+emacs/elpa/
+*.el~

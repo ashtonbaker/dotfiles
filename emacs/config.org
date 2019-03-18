@@ -1,0 +1,7 @@
+#+TITLE: Ashton Baker's Emacs Configuration
+
+** Personal Information
+#+BEGIN_SRC emacs-lisp
+(setq user-full-name "Ashton Baker"
+      user-mail-address "ashtonscottbaker@gmail.com")
+#+END_SRC
