@@ -43,3 +43,17 @@ export NVM_DIR="$HOME/.nvm"
 eval "$(direnv hook bash)"
 
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+
+export EMACS_CONFIG="custom"
+function cycle-emacs-configs() {
+    rm ~/.emacs.d
+    if [ "$EMACS_CONFIG" = "custom" ]; then
+        ln -s ~/spacemacs/ ~/.emacs.d
+        export EMACS_CONFIG="spacemacs"
+    else
+        ln -s ~/dotfiles/emacs/ ~/.emacs.d
+        export EMACS_CONFIG="custom"
+    fi  
+}
+
+shopt -s autocd

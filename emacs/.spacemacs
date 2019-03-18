@@ -57,7 +57,6 @@ values."
      syntax-checking
      version-control
      treemacs
-     treemacs-evil
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -343,7 +342,7 @@ you should place your code here."
          (file "~/org/templates/newgoaltemplate.org"))
         ("s" "Someday" entry (file+headline "~/org/somedaymaybe.org" "Someday / Maybe")
          "* SOMEDAY %?\n")
-        ("y" "Maybe" entry (file+headline "~/org/somedaymaybe.org" "Someday / Maybe")
+        ("b" "Maybe" entry (file+headline "~/org/somedaymaybe.org" "Someday / Maybe")
          "* MAYBE %?\n")
         ("r" "Recipe" entry (file+headline "~/org/reference/food/recipes.org" "Recipes")
          (file "~/org/templates/recipetemplate.org"))
@@ -363,12 +362,29 @@ you should place your code here."
   (setq org-agenda-files (quote ("~/org/todo.org"
                                  "~/org/agendas.org"
                                  "~/org/inbox.org"
-                                 "~/org/calendar/calendar.org"
-                                 "~/org/calendar/blumira-calendar.org"
+                                 "~/org/calendar/personal.org"
+                                 "~/org/calendar/blumira.org"
                                  "~/org/somedaymaybe.org"
                                  "~/org/goals.org"
                                  "~/org/reviews.org")))
   (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+  (setq org-agenda-time-grid '((daily today require-timed)
+                               (800 830 900 930 1000 1030 1100 1130 1200 1230 1300 1330 1400 1430 1500 1530 1600 1630 1700 1730 1800)
+                               "......"
+                               "----------------"))
+  (setq org-stuck-projects '("+LEVEL=2+PROJECT" ("NEXT" "TODO") nil ""))
+  (defun vsplit-last-buffer ()
+    (interactive)
+    (split-window-vertically)
+    (other-window 1 nil)
+    (switch-to-next-buffer))
+  (defun hsplit-last-buffer ()
+    (interactive)
+    (split-window-horizontally)
+    (other-window 1 nil)
+    (switch-to-next-buffer))
+  (bind-key "C-x 2" 'vsplit-last-buffer)
+  (bind-key "C-x 3" 'hsplit-last-buffer)
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -412,9 +428,9 @@ This function is called at the very end of Spacemacs initialization."
  '(org-startup-with-inline-images t)
  '(package-selected-packages
    (quote
-    (org-gcal flycheck-pos-tip pos-tip flycheck web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern tern coffee-mode mmm-mode markdown-toc markdown-mode gh-md rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fuzzy evil-magit magit magit-popup git-commit ghub treepy let-alist graphql with-editor diff-hl company-statistics company-anaconda company auto-yasnippet yasnippet ac-ispell auto-complete vimrc-mode dactyl-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+    (org-gcal request-deferred flycheck-pos-tip pos-tip flycheck web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern tern coffee-mode mmm-mode markdown-toc markdown-mode gh-md rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fuzzy evil-magit magit magit-popup git-commit ghub treepy let-alist graphql with-editor diff-hl company-statistics company-anaconda company auto-yasnippet yasnippet ac-ispell auto-complete vimrc-mode dactyl-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
  '(spacemacs-theme-org-height nil)
- '(toc-org-max-depth 10))
+ '(toc-org-max-depth 10 t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
