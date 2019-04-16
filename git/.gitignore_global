@@ -43,3 +43,7 @@ Thumbs.db
 # Per-Directory Environment Variables #
 #######################################
 .envrc
+
+# Whatever the fuck these are #
+###############################
+.tern-port

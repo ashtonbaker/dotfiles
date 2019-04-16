@@ -51,7 +51,7 @@ function cycle-emacs-configs() {
         ln -s ~/spacemacs/ ~/.emacs.d
         export EMACS_CONFIG="spacemacs"
     else
-        ln -s ~/dotfiles/emacs/ ~/.emacs.d
+        ln -s ~/dotfiles/emacs/.emacs.d/ ~/.emacs.d
         export EMACS_CONFIG="custom"
     fi  
 }

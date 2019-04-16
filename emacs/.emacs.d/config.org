@@ -5,3 +5,14 @@
 (setq user-full-name "Ashton Baker"
       user-mail-address "ashtonscottbaker@gmail.com")
 #+END_SRC
+
+** evil mode
+#+BEGIN_SRC emacs-lisp
+(require 'evil)
+(evil-mode 1)
+#+END_SRC
+
+
+#+BEGIN_SRC emacs-lisp
+(load-theme 'nord t)
+#+END_SRC
