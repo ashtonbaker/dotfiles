@@ -8,25 +8,36 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-# if running bash
-if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
-    fi
+# set PATH so it includes /usr/local/bin/ if it exists
+if [ -d /usr/local/bin ] ; then
+    PATH="/usr/local/bin:$PATH"
 fi
 
-# set PATH so it includes user's private bin if it exists
+# set PATH so it includes ~/bin/ if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-# set PATH so it includes user's private bin if it exists
+# set PATH so it includes ~/.local/bin/ if it exists
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+if [ -d "$HOME/.rvm/bin" ] ; then
+    PATH="$HOME/.rvm/bin:$PATH"
+fi
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# Load RVM into a shell session *as a function*
+if [ -s ~/.rvm/scripts/rvm ] ; then
+    source "$HOME/.rvm/scripts/rvm"
+fi
+
+# Set Blumira username
+export BLU_SSH_USERNAME="abaker"
+
+# Set GOPATH
+export GOPATH=$HOME/go
+
+# Set default EDITOR
+export EDITOR='vim'

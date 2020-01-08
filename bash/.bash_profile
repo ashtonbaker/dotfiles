@@ -1,4 +1,7 @@
+if [ -f ~/.profile ]; then
+   source ~/.profile
+fi
 
-[[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
-
-export EDITOR='vim'
+if [ -f ~/.bashrc ]; then
+   source ~/.bashrc
+fi

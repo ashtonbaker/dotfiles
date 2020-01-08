@@ -1,4 +1,7 @@
 secrets.el
 secrets.org
+secrets.sh
 emacs/elpa/
 *.el~
+emacs/scratch-config/elpa/
+vim/.vim/plugged/

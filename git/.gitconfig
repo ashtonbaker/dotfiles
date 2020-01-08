@@ -12,3 +12,7 @@
   editor = 'vim'
 [alias]
   adog = log --all --decorate --oneline --graph 
+  co = checkout
+  s = status
+[merge]
+	conflictstyle = diff3
