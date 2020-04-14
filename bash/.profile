@@ -13,6 +13,11 @@ if [ -d /usr/local/bin ] ; then
     PATH="/usr/local/bin:$PATH"
 fi
 
+# set PATH so it includes /usr/local/go/bin/ if it exists
+if [ -d /usr/local/bin ] ; then
+    PATH="/usr/local/go/bin:$PATH"
+fi
+
 # set PATH so it includes ~/bin/ if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
@@ -23,10 +28,16 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+# Add Doom Emacs bin to PATH if it exists.
+if [ -d "$HOME/.emacs.d/bin" ] ; then
+    PATH="$HOME/.emacs.d/bin:$PATH"
+fi
+
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 if [ -d "$HOME/.rvm/bin" ] ; then
     PATH="$HOME/.rvm/bin:$PATH"
 fi
+
 
 # Load RVM into a shell session *as a function*
 if [ -s ~/.rvm/scripts/rvm ] ; then

@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/home/abaker/Dropbox/dotfiles/.git'
 let g:netrw_dirhist_2='/home/ashton/snap/insomnia/24/.config/ibus'
 let g:netrw_dirhist_3='/home/abaker/git/eclipse.jdt.ls/org.eclipse.jdt.ls.tests/target/surefire-reports'
@@ -8,3 +8,4 @@ let g:netrw_dirhist_5='/home/abaker/.emacs.d'
 let g:netrw_dirhist_6='/home/ashton/.config/sway'
 let g:netrw_dirhist_7='/home/ashton/.bash.d'
 let g:netrw_dirhist_8='/home/ashton/blumira/sensor-lastpass-module/etc/supervisor'
+let g:netrw_dirhist_9='/home/ashton/blumira/okta-module/etc/supervisor'
