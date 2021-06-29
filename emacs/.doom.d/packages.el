@@ -7,3 +7,5 @@
 ;; (package! builtin-package :disable t)
 (package! lsp-haskell)
 (package! org-brain)
+(package! exec-path-from-shell)
+(package! request)

@@ -2,12 +2,14 @@
 
 ;; Place your private configuration here
 (package-initialize t)
-(setq doom-font (font-spec :family "Source Code Pro" :size 14))
+;;(setq doom-font (font-spec :family "Source Code Pro" :size 14))
+(setq doom-font (font-spec :family "JetBrains Mono NL" :size 14))
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
 (add-to-list 'load-path "~/.lisp.d")
+(load "~/.emacs.secrets" t)
 
-(load "peg-mode")
+;;(load "peg-mode")
 (add-to-list 'auto-mode-alist '("\\.peg\\'" . peg-mode))
 (setq python-shell-interpreter "python3")
 (setq js-indent-level 2)
@@ -87,6 +89,7 @@
 (doom-themes-visual-bell-config)
 
 (setq doom-themes-treemacs-theme "doom-colors")
+(setq doom-themes-treemacs-enable-variable-pitch nil)
 
 (doom-themes-treemacs-config)
 
@@ -97,6 +100,9 @@
 (setq lsp-haskell-process-path-hie "hie-wrapper")
 
 (add-hook 'haskell-mode-hook #'lsp)
+
+(auto-fill-mode -1)
+(remove-hook 'text-mode-hook #'turn-on-auto-fill)
 
 (use-package org-brain :ensure t
   :init
@@ -115,3 +121,46 @@
   (setq org-brain-title-max-length 12)
   (setq org-brain-include-file-entries nil
         org-brain-file-entries-use-title nil))
+
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
+(use-package request :ensure t)
+
+(defun bitbucket/get-repositories (&optional url)
+  (let ((auth-string
+             (concat
+              "Basic "
+              (base64-encode-string (concat blu/bitbucket-username ":" blu/bitbucket-app-password)))))
+
+       (let (result next)
+         (request
+           (if url url "https://api.bitbucket.org/2.0/repositories/blumira")
+           :sync t
+           :type "GET"
+           :headers `(("Authorization" . ,auth-string))
+           :params '(("role" . "member") ("pagelen" . "50"))
+           :parser 'json-read
+           :encoding 'utf-8
+           :success (cl-function
+                     (lambda (&key data &allow-other-keys)
+                       (setq result (mapcar
+                                     (lambda (value) (cdr (assq 'slug value)))
+                                     (cdr (assq 'values data))))
+                       (setq next (cdr (assq 'next data))))))
+         ;; Handle pagination recursively
+         (if next
+             ;; if we have a "next" link, recurse and append
+             (append result (bitbucket/get-repositories next))
+             ;; otherwise, just return the result.
+             result))))
+
+(defun bitbucket/clone-project ()
+  (interactive)
+    (let ((repos (bitbucket/get-repositories)))
+      (ivy-read "Select a Git Repo: "
+                repos
+                :action (lambda (repo)
+                          (setq project-root (format "~/blumira/%s" repo))
+                          (magit-git-command (format "git clone --recurse-submodules git@bitbucket.org:blumira/%s.git %s" repo project-root))
+                          (projectile-add-known-project project-root)))))
