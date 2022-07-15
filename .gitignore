@@ -5,3 +5,4 @@ emacs/elpa/
 *.el~
 emacs/scratch-config/elpa/
 vim/.vim/plugged/
+.DS_Store
