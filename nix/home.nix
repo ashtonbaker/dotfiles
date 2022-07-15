@@ -85,7 +85,40 @@
 
   
   ### Terminal configuration
-  programs.fish.enable = true;
+  programs.fish = {
+    enable = true;
+    shellAliases = {
+      ls = "ls -a";
+      ll = "ls -la";
+    };
+    shellAbbrs = {
+      o = "open";
+    };
+  };
+
+  programs.starship = {
+    enable = true;
+    settings = {
+      add_newline = false;
+      character = {
+        success_symbol = "[>](bold green)";
+        error_symbol = "[x](bold red)";
+        vicmd_symbol = "[<](bold green)";
+      };
+      git_commit = {
+        tag_symbol = " tag ";
+      };
+      git_status = {
+        ahead = ">";
+        behind = "<";
+        diverged = "<>";
+        renamed = "r";
+        deleted = "x";
+      };
+    };
+    enableFishIntegration = true;
+  };
+
   programs.alacritty.enable = true;
   programs.alacritty.settings = {
     font = {
