@@ -75,6 +75,8 @@
     jetbrains-mono
     htop
     tmux
+    xclip
+
     # swaywm packages
     swaylock
     swayidle
@@ -94,6 +96,7 @@
     shellAbbrs = {
       o = "open";
     };
+    interactiveShellInit = "fish_add_path ~/.local/bin ~/bin";
   };
 
   programs.starship = {

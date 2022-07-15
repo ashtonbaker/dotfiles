@@ -6,3 +6,4 @@ emacs/elpa/
 emacs/scratch-config/elpa/
 vim/.vim/plugged/
 .DS_Store
+/moonlander/build.log

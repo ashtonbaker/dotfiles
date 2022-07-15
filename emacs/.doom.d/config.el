@@ -22,6 +22,11 @@
 (setq org-refile-use-outline-path 'file)
 (setq org-outline-path-complete-in-steps nil)
 (setq org-refile-allow-creating-parent-nodes 'confirm)
+(cl-loop for file in '("~/.nix-profile/bin/fish" "/usr/bin/bash")
+        when (file-exists-p file)
+        do (progn
+          (setq shell-file-name file)
+          (cl-return)))
 (after! org (setq org-capture-templates
     `(("t" "Task" entry (file ,(org-file "inbox.org"))
         "* TODO %?\n")
