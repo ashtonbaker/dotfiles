@@ -4,11 +4,9 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-
   # Let Home Manager update fonts cache
   # (https://github.com/nix-community/home-manager/issues/520)
   fonts.fontconfig.enable = true;
-
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -20,11 +18,8 @@
   # changes in each release.
   home.stateVersion = "21.11";
 
-
   # Git Configuration
   programs.git.enable = true;
-
-
 
   home.packages = with pkgs; [
     jetbrains-mono
@@ -32,7 +27,6 @@
     tmux
   ];
 
-  
   ### Terminal configuration
   programs.fish = {
     enable = true;
