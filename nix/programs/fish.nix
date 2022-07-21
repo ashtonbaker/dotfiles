@@ -31,6 +31,7 @@
         #if test -e <nix_file_path_file>
         #    fenv source <nix_file_path_file>
         #end
+        set -x SSH_AUTH_SOCK /Users/ashtonbaker/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
     '';
   };
 
