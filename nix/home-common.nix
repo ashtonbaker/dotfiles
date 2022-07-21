@@ -6,6 +6,7 @@
     ./programs/git.nix
     ./programs/fish.nix
     ./programs/emacs.nix
+    ./programs/vim.nix
   ];
 
   # Let Home Manager install and manage itself.
@@ -31,5 +32,4 @@
     htop
     tmux
   ];
-
 }

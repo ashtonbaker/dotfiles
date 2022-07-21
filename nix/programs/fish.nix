@@ -3,8 +3,8 @@
   programs.fish = {
     enable = true;
     shellAliases = {
-      ls = "ls -aG";
-      ll = "ls -laG";
+      ls = "ls -aG --color";
+      ll = "ls -laG --color";
     };
     shellAbbrs = {
       o = "open";
