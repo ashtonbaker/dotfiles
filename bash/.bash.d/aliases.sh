@@ -3,7 +3,7 @@ alias setclip="xclip -selection c"
 alias getclip="xclip -selection c -o"
 
 # emacs daemon aliases
-alias emin="emacsclient -t"
+alias emin="emacs --no-window"
 alias emax="emacsclient -nc"
 
 # ls aliases
@@ -14,7 +14,8 @@ alias l='ls -CF'
 
 # cd aliases
 alias blu="cd ~/blumira"
-alias nwg="cd ~/nwg"
+alias fea="cd ~/blumira/front-end-api; nvm use; yvm use;"
+alias fer="cd ~/blumira/front-end-react; nvm use 10.15;"
 
 # enable color support of grep
 alias grep='grep --color=auto'

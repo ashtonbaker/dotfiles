@@ -14,6 +14,8 @@ hit_api() {
 }
 
 api_local () { hit_api '0.0.0.0:8080/v1.0' $1 $2; }
+fea_local() { hit_api '0.0.0.0:8090' $1 $2; }
+fea_local_docker() { hit_api '0.0.0.0:8080' $1 $2; }
 
 account_d () { hit_api 'account/v1.0' $1 $2; }
 config_d () { hit_api 'config/v1.0' $1 $2; }

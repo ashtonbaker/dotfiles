@@ -16,7 +16,10 @@
   co = checkout
   s = status
   blu-clone = "!f() { git clone --recurse-submodules git@bitbucket.org:blumira/${1}.git ~/blumira/${1}; }; f"
+  dno = diff --name-only
 [merge]
 	conflictstyle = diff3
 [github]
 	user = 
+[url "git@bitbucket.org:"]
+	insteadOf = https://bitbucket.org/
