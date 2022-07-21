@@ -4,11 +4,9 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-
   # Let Home Manager update fonts cache
   # (https://github.com/nix-community/home-manager/issues/520)
   fonts.fontconfig.enable = true;
-
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -20,11 +18,8 @@
   # changes in each release.
   home.stateVersion = "21.11";
 
-
   # Git Configuration
   programs.git.enable = true;
-
-
 
   home.packages = with pkgs; [
     jetbrains-mono
@@ -32,18 +27,39 @@
     tmux
   ];
 
-  
   ### Terminal configuration
   programs.fish = {
     enable = true;
     shellAliases = {
-      ls = "ls -a";
-      ll = "ls -la";
+      ls = "ls -aG";
+      ll = "ls -laG";
     };
     shellAbbrs = {
       o = "open";
     };
-    interactiveShellInit = "fish_add_path ~/.local/bin ~/bin";
+    interactiveShellInit = "fish_add_path ~/.local/bin ~/bin ~/.nix-profile/bin";
+    plugins = [{
+        name="foreign-env";
+        src = pkgs.fetchFromGitHub {
+            owner = "oh-my-fish";
+            repo = "plugin-foreign-env";
+            rev = "dddd9213272a0ab848d474d0cbde12ad034e65bc";
+            sha256 = "00xqlyl3lffc5l0viin1nyp819wf81fncqyz87jx8ljjdhilmgbs";
+        };
+    }];
+
+    shellInit =
+    ''
+        # nix
+        if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+            fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+        end
+
+        # home-manager
+        #if test -e <nix_file_path_file>
+        #    fenv source <nix_file_path_file>
+        #end
+    '';
   };
 
   programs.starship = {
@@ -66,6 +82,11 @@
         deleted = "x";
       };
     };
+    enableFishIntegration = true;
+  };
+
+  programs.atuin = {
+    enable = true;
     enableFishIntegration = true;
   };
 
