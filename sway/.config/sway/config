@@ -217,7 +217,7 @@ bar {
 }
 
 gaps inner 15
-output "*" bg ~/Pictures/mojave/10-14-Mojave-13.jpg fill
+#output "*" bg ~/Pictures/mojave/10-14-Mojave-13.jpg fill
 
 include @sysconfdir@/sway/
 exec "systemctl --user import-environment; systemctl --user start sway-session.target"

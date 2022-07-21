@@ -3,7 +3,7 @@
 ;; Place your private configuration here
 (package-initialize t)
 ;;(setq doom-font (font-spec :family "Source Code Pro" :size 14))
-(setq doom-font (font-spec :family "JetBrains Mono NL" :size 14))
+;;(setq doom-font (font-spec :family "JetBrains Mono NL" :size 14))
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
 (add-to-list 'load-path "~/.lisp.d")
