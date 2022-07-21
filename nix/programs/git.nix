@@ -20,6 +20,7 @@
       };
       merge = {
         conflictstyle = "diff3";
+        ours = { driver = true; };
       };
       url = {
         "git@bitbucket.org:" = {
