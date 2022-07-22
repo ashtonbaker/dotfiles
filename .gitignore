@@ -1,3 +1,5 @@
+nix/home.nix
+
 secrets.el
 secrets.org
 secrets.sh
