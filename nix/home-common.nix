@@ -2,10 +2,13 @@
 
 {
   imports = [
-    ./programs/dircolors.nix
-    ./programs/git.nix
-    ./programs/fish.nix
-    ./programs/emacs.nix
+    ./dircolors/dircolors.nix
+    ./git/git.nix
+    ./fish/fish.nix
+    ./emacs/emacs.nix
+    ./tmux/tmux.nix
+    ./vim/vim.nix
+    ./bash/bash.nix
   ];
 
   # Let Home Manager install and manage itself.
@@ -27,9 +30,7 @@
 
   # packages
   home.packages = with pkgs; [
-    jetbrains-mono
     htop
-    tmux
+    xclip
   ];
-
 }
