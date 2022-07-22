@@ -3,8 +3,10 @@
   programs.fish = {
     enable = true;
     shellAliases = {
-      ls = "ls -aG";
-      ll = "ls -laG";
+      ls = "ls -aG --color";
+      ll = "ls -laG --color";
+      c = "xclip -selection clipboard";
+      v = "xclip -o -selection clipboard";
     };
     shellAbbrs = {
       o = "open";

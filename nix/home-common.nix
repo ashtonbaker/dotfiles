@@ -2,6 +2,7 @@
 
 {
   imports = [
+<<<<<<< HEAD
     ./dircolors/dircolors.nix
     ./git/git.nix
     ./fish/fish.nix
@@ -9,6 +10,18 @@
     ./tmux/tmux.nix
     ./vim/vim.nix
     ./bash/bash.nix
+||||||| merged common ancestors
+    ./programs/dircolors.nix
+    ./programs/git.nix
+    ./programs/fish.nix
+    ./programs/emacs.nix
+=======
+    ./programs/dircolors.nix
+    ./programs/git.nix
+    ./programs/fish.nix
+    ./programs/emacs.nix
+    ./programs/vim.nix
+>>>>>>> xiphias
   ];
 
   # Let Home Manager install and manage itself.
