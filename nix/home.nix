@@ -1,1 +1,1 @@
-home-macos.nix
+home-fedora.nix

@@ -14,6 +14,10 @@
   # nix on non-NixOS linux
   targets.genericLinux.enable = true;
 
+  services.syncthing = {
+    enable = true;
+  };
+
   home.packages = with pkgs; [
       wl-clipboard
       xclip
