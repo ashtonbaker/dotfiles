@@ -16,7 +16,7 @@
     extraConfig = {
       core = {
         excludesFile = "~/.gitignore_global";
-        editor = "vim";
+        editor = "emacsclient -t";
       };
       merge = {
         conflictstyle = "diff3";
