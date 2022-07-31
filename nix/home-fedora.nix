@@ -22,5 +22,6 @@
       wl-clipboard
       xclip
       ripgrep
+      ffmpeg
   ];
 }
