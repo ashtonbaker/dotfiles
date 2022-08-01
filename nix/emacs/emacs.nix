@@ -8,6 +8,8 @@
     ];
   };
 
+  services.emacs.enable = true;
+
   home.file.".doom.d" = {
     source = ./.doom.d;
 
