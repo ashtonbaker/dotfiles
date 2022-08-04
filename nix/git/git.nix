@@ -32,6 +32,7 @@
       {
         condition = "gitdir:~/blumira/";
         contents = {
+          gitlab.user = "ashton.baker.blumira";
           user = {
             email = "abaker@blumira.com";
             name = "Ashton Baker";

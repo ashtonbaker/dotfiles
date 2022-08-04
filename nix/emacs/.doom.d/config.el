@@ -160,6 +160,16 @@
              ;; otherwise, just return the result.
              result))))
 
+(defun home-manager/switch ()
+  (interactive)
+  (shell-command "home-manager switch")
+  (quit-window))
+
+(map! :leader
+      :desc "build and activate home-manager config"
+      "h h s" #'home-manager/switch)
+
+
 (defun bitbucket/clone-project ()
   (interactive)
     (let ((repos (bitbucket/get-repositories)))
@@ -169,3 +179,8 @@
                           (setq project-root (format "~/blumira/%s" repo))
                           (magit-git-command (format "git clone --recurse-submodules git@bitbucket.org:blumira/%s.git %s" repo project-root))
                           (projectile-add-known-project project-root)))))
+
+(with-eval-after-load 'magit
+  (require 'forge))
+
+(setq auth-sources '("~/.authinfo"))
