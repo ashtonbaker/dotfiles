@@ -11,29 +11,29 @@
     shellAbbrs = {
       o = "open";
     };
-    interactiveShellInit = "fish_add_path ~/.local/bin ~/bin ~/.nix-profile/bin";
+    interactiveShellInit = "fish_add_path ~/.local/bin ~/bin ~/.nix-profile/bin ~/google-cloud-sdk/bin";
     plugins = [{
-        name="foreign-env";
-        src = pkgs.fetchFromGitHub {
-            owner = "oh-my-fish";
-            repo = "plugin-foreign-env";
-            rev = "dddd9213272a0ab848d474d0cbde12ad034e65bc";
-            sha256 = "00xqlyl3lffc5l0viin1nyp819wf81fncqyz87jx8ljjdhilmgbs";
-        };
+      name="foreign-env";
+      src = pkgs.fetchFromGitHub {
+        owner = "oh-my-fish";
+        repo = "plugin-foreign-env";
+        rev = "dddd9213272a0ab848d474d0cbde12ad034e65bc";
+        sha256 = "00xqlyl3lffc5l0viin1nyp819wf81fncqyz87jx8ljjdhilmgbs";
+      };
     }];
 
     shellInit =
     ''
-        # nix
-        if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-            fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-        end
+      # nix
+      if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+          fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+      end
 
-        # home-manager
-        #if test -e <nix_file_path_file>
-        #    fenv source <nix_file_path_file>
-        #end
-        set -x SSH_AUTH_SOCK /Users/ashtonbaker/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+      # home-manager
+      #if test -e <nix_file_path_file>
+      #    fenv source <nix_file_path_file>
+      #end
+      set -x SSH_AUTH_SOCK /Users/ashtonbaker/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
     '';
   };
 
@@ -63,6 +63,8 @@
   programs.atuin = {
     enable = true;
     enableFishIntegration = true;
+    settings = {
+      search_mode = "fuzzy";
+    };
   };
-
 }
