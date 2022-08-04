@@ -8,6 +8,7 @@
     ./emacs/emacs.nix
     ./tmux/tmux.nix
     ./vim/vim.nix
+    ./direnv/direnv.nix
     ./bash/bash.nix
   ];
 
