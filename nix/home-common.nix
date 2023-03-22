@@ -33,5 +33,21 @@
   home.packages = with pkgs; [
     htop
     xclip
+    jq
   ];
+
+  home.sessionPath = [
+    "$HOME/bin"
+    "$HOME/.local/bin"
+    "$HOME/.nix-profile/bin"
+    "$HOME/.cargo/bin"
+  ];
+
+  home.shellAliases = {
+      ls = "ls -aG --color";
+      ll = "ls -laG --color";
+      c = "xclip -selection clipboard";
+      v = "xclip -o -selection clipboard";
+      e = "emacsclient -t";
+  };
 }
