@@ -6,6 +6,7 @@
     source = ./.bash.d;
     recursive = true;
   };
+  programs.bash.initExtra = "PATH=$PATH:~/bin/";
   #home.file.".profile".source = ./.profile;
   #home.file.".bash_profile".source = ./.bash_profile;
   #home.file.".bashrc".source = ./.bashrc;
