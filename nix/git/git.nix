@@ -3,6 +3,7 @@
   # Git Configuration
   programs.git = {
     enable = true;
+    lfs.enable = true;
     userName = "Ashton Baker";
     userEmail = "mail@ashtonbaker.com";
     aliases = {
@@ -18,6 +19,9 @@
         excludesFile = "~/.gitignore_global";
         editor = "vim";
       };
+      github = {
+        username = "ashtonbaker";
+      };
       merge = {
         conflictstyle = "diff3";
         ours = { driver = true; };
@@ -30,11 +34,11 @@
     };
     includes = [
       {
-        condition = "gitdir:~/blumira/";
+        condition = "gitdir:~/vl/";
         contents = {
-          gitlab.user = "ashton.baker.blumira";
+          github.user = "ashtonbaker";
           user = {
-            email = "abaker@blumira.com";
+            email = "ashton.baker@vannevarlabs.com";
             name = "Ashton Baker";
           };
         };
