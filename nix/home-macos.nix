@@ -6,11 +6,19 @@
   home.username = "ashton";
   home.homeDirectory = "/Users/ashton";
 
+  home.sessionPath = [
+    "/opt/homebrew/bin"
+  ];
+
+  home.sessionVariables = {
+    HOMEBREW_PREFIX = "/opt/homebrew";
+  };
+
   launchd = {
     enable = true;
     agents = {
       emacsclient = {
-        enable = true;
+        enable = false;
         config = {
           ProgramArguments = [
             "/users/ashton/.nix-profile/bin/emacs"

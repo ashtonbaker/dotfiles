@@ -42,6 +42,7 @@
 
       set -x SSH_AUTH_SOCK /Users/ashtonbaker/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 
+      set -x AWS_PROFILE vl-systemadministrator
 
       # VTERM STUFF
       function vterm_printf;
@@ -87,6 +88,9 @@
       end
 
       # END VTERM STUFF
+
+      atuin init fish | source
+
     '';
   };
 
@@ -118,6 +122,7 @@
     enableFishIntegration = true;
     settings = {
       search_mode = "fuzzy";
+      filter_mode = "session";
     };
   };
 }

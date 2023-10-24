@@ -38,6 +38,7 @@
 
   home.sessionPath = [
     "$HOME/bin"
+    "$HOME/sbin"
     "$HOME/.local/bin"
     "$HOME/.nix-profile/bin"
     "$HOME/.cargo/bin"

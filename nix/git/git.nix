@@ -1,9 +1,11 @@
-{ ... }:
+{ lib, ... }:
+
+with lib;
+
 {
   # Git Configuration
   programs.git = {
     enable = true;
-    lfs.enable = true;
     userName = "Ashton Baker";
     userEmail = "mail@ashtonbaker.com";
     aliases = {
@@ -14,10 +16,14 @@
       blu-clone = "\"!f() { git clone --recurse-submodules git@bitbucket.org:blumira/\${1}.git ~/blumira/\${1}; }; f\"";
       dno = "diff --name-only";
     };
+    lfs.enable = true;
     extraConfig = {
       core = {
         excludesFile = "~/.gitignore_global";
         editor = "vim";
+      };
+      lfs = {
+        cachecredentials = true;
       };
       github = {
         username = "ashtonbaker";
