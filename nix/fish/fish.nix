@@ -90,7 +90,7 @@
       # END VTERM STUFF
 
       atuin init fish | source
-
+      eval "$(/opt/homebrew/bin/brew shellenv)"
     '';
   };
 
