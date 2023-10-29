@@ -8,11 +8,12 @@
     ];
   };
 
-  home.file.".doom.d" = {
-    source = ./.doom.d;
+  home.file.".doom.d/init.el" = {
+    source = ./.doom.d/init.el;
+  };
 
-    # this doesn't seem to be necessary at the moment
-    #recursive = true;
+  home.file.".doom.d/config.org" = {
+    source = ./.doom.d/config.org;
   };
 
   # services.emacs = {
