@@ -14,7 +14,7 @@
             (setq shell-file-name file)
             (cl-return)))
 
-#+end_src emacs-lisp
+#+end_src
 
 *** Window split functions
 #+begin_src emacs-lisp
@@ -52,6 +52,7 @@
 *** Python
 #+begin_src emacs-lisp
 (setq python-shell-interpreter "python3")
+#+end_src
 
 *** Java
 #+begin_src emacs-lisp
