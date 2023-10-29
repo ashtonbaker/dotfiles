@@ -8,14 +8,6 @@
     ];
   };
 
-  home.file.".doom.d/init.el" = {
-    source = ./.doom.d/init.el;
-  };
-
-  home.file.".doom.d/config.org" = {
-    source = ./.doom.d/config.org;
-  };
-
   # services.emacs = {
   #   enable = true;
   #   defaultEditor = true;
