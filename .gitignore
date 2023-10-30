@@ -11,4 +11,4 @@ vim/.vim/plugged/
 build.log
 .netrwhist
 flycheck*
-.emacs.d/config.el
+config.el
